@@ -10,7 +10,7 @@ pipeline {
         BACKEND_DIR = 'crud_backend/crud_backend-main'
         FRONTEND_DIR = 'crud_frontend/crud_frontend-main'
 
-        # Your EC2 Tomcat Manager URL
+        // Your EC2 Tomcat Manager URL
         TOMCAT_URL = 'http://13.61.183.143:9090/manager/text'
         TOMCAT_USER = 'admin'
         TOMCAT_PASS = 'admin'
