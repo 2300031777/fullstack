@@ -10,7 +10,8 @@ pipeline {
         BACKEND_DIR = 'crud_backend/crud_backend-main'
         FRONTEND_DIR = 'crud_frontend/crud_frontend-main'
 
-        TOMCAT_URL = 'http://184.72.122.226:9090/manager/text'
+        # Your EC2 Tomcat Manager URL
+        TOMCAT_URL = 'http://13.61.183.143:9090/manager/text'
         TOMCAT_USER = 'admin'
         TOMCAT_PASS = 'admin'
 
@@ -63,8 +64,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                        curl -u ${TOMCAT_USER}:${TOMCAT_PASS} \\
-                          --upload-file ${BACKEND_WAR} \\
+                        curl -u ${TOMCAT_USER}:${TOMCAT_PASS} \
+                          --upload-file ${BACKEND_WAR} \
                           "${TOMCAT_URL}/deploy?path=/springapp1&update=true"
                     """
                 }
@@ -75,8 +76,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                        curl -u ${TOMCAT_USER}:${TOMCAT_PASS} \\
-                          --upload-file ${FRONTEND_WAR} \\
+                        curl -u ${TOMCAT_USER}:${TOMCAT_PASS} \
+                          --upload-file ${FRONTEND_WAR} \
                           "${TOMCAT_URL}/deploy?path=/frontapp1&update=true"
                     """
                 }
@@ -86,8 +87,8 @@ pipeline {
 
     post {
         success {
-            echo "✅ Backend deployed: http://184.72.122.226:9090/springapp1"
-            echo "✅ Frontend deployed: http://184.72.122.226:9090/frontapp1"
+            echo "✅ Backend deployed: http://13.61.183.143:9090/springapp1"
+            echo "✅ Frontend deployed: http://13.61.183.143:9090/frontapp1"
         }
         failure {
             echo "❌ Build or deployment failed"
